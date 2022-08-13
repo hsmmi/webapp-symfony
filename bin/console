@@ -1,14 +1,11 @@
 #!/usr/bin/env php
-
-<!-- 
-    
-    run it with:
-        symfony bin/console
-        php bin/console
-
- -->
-
 <?php
+
+    
+    // run it with:
+    //     symfony bin/console
+    //     php bin/console
+
 
 use App\Kernel;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
