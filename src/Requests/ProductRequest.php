@@ -7,7 +7,7 @@
  */
 namespace App\Requests;
 
-class Product
+class Product extends BaseValidateRequest
 {
 /* 
     Readonly: after you set it, you can't change it
@@ -22,25 +22,33 @@ class Product
     #[Assert\PositiveOrZero]
     public readonly ?int $stock;
 
-    private ValidatorInterface $validator;
+    /* 
+        go to baseValidateRequest and use it
+        to don't write code every time
+    */
+    // // constroctor
+    // public function __construct(array $fields, ValidatorInterface $validator)
+    // {
+    //     // dd($fields);
+    //     foreach ($fields as $field => $value) {
+    //         if (property_exists($this, $field)) { // check if exist in class
+    //             $this->{$field} = $value; // {} beacuse it's variable
+    //         }
+    //         // property_exists($this, $field) ? $this->$field = $value : null;
+    //     }
 
-    // constroctor
-    public function __construct(array $fields, ValidatorInterface $validator)
-    {
-        // dd($fields);
-        foreach ($fields as $field => $value) {
-            if (property_exists($this, $field)) { // check if exist in class
-                $this->{$field} = $value; // {} beacuse it's variable
-            }
-            // property_exists($this, $field) ? $this->$field = $value : null;
-        }
+    //     $this->validator = $validator;
+    // }
 
-        $this->validator = $validator;
-    }
+    // private function validate(ValidatorInterface $validator): void
+    // {
+    //     $error = $validator->validate($this);
+        
+    //     // you should handle exeptoin
+    //     if ($errors->count()) {
+    //         throw new Exception();
+    //     }
+    // }
 
-    private function validate(): void
-    {
-        $this->validator->validate($this);
-        $errors->count();
-    }
+    
 }

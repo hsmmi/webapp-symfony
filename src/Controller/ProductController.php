@@ -17,10 +17,15 @@ class ProductController extends AbstractController
     // we had param converter for id, ...
     // method POST
     #[Route('/', name: 'app_product_new', methods: ['POST'])] // using app to specify the namespace
+    #[ParamConverter('productRequest', class: Reetc)] // using param converter to convert the request to product
     // using type hinting for the parameter
     // dependency injection
     // save it with repository and get repository with type hinting
-    public function new(Request $request, ProductRepository $repository, ValidatorInterface $validator): Response
+    public function new(
+        Request $request, 
+        ProductRepository $repository, 
+        // ValidatorInterface $validator, // injection in ValidateRequest
+        ProductRequest $productRequest): Response
     {
         // using dump to know what we have
         // dump($request);
@@ -34,10 +39,19 @@ class ProductController extends AbstractController
             why using array as parameter?
                 because we should get just as much as we need        
         */
-        $productRequest = new Product($request->toArray(),  $validator);
+        // $productRequest = new Product($request->toArray(),  $validator);
         // dd($productRequest);
 
+        /* 
+            we want to do productRequest automatically with injection
+        */
+
+
         $requestData = $request->toArray();
+        /* 
+            when ever you saw new in your code and it's not a entity,
+            you must can use injector to get it
+        */
         $product = new Product(); // not good to have constructor with no parameters
         // set id in constructor
         $product->setTitle($requestData['title']);
