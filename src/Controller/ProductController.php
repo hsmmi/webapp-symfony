@@ -20,7 +20,7 @@ class ProductController extends AbstractController
     // using type hinting for the parameter
     // dependency injection
     // save it with repository and get repository with type hinting
-    public function new(Request $request, ProductRepository $repository): Response
+    public function new(Request $request, ProductRepository $repository, ValidatorInterface $validator): Response
     {
         // using dump to know what we have
         // dump($request);
@@ -30,6 +30,12 @@ class ProductController extends AbstractController
 
         // best way is to don't have code here and create
         // class for it and use it in controller
+        /* 
+            why using array as parameter?
+                because we should get just as much as we need        
+        */
+        $productRequest = new Product($request->toArray(),  $validator);
+        // dd($productRequest);
 
         $requestData = $request->toArray();
         $product = new Product(); // not good to have constructor with no parameters
