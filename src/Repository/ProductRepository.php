@@ -16,11 +16,25 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class ProductRepository extends ServiceEntityRepository
 {
+/*     
+    Manager: entity manager is a service which is
+    responsible for managing the persistence of entities
+    and we use different managers for different entities 
+*/
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Product::class);
     }
 
+/* 
+    what is add?
+        add is a method which is responsible for adding a new product    
+*/
+
+/* 
+    common mistake is that for every database query you create 
+    a new method which is responsible for that query
+*/
     public function add(Product $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);

@@ -5,6 +5,12 @@ namespace App\Entity;
 use App\Repository\ProductRepository;
 use Doctrine\ORM\Mapping as ORM;
 
+/* 
+ProductRepository
+What is repository?
+    src/repository/
+ */
+
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
 class Product
 {
