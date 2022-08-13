@@ -37,10 +37,16 @@ class ProductRepository extends ServiceEntityRepository
 */
     public function add(Product $entity, bool $flush = false): void
     {
+/*
+        flush: if be true, flush will be done
+        what is flush?
+            start connection with database and execute query
+ */        
         $this->getEntityManager()->persist($entity);
 
         if ($flush) {
             $this->getEntityManager()->flush();
+            // flush and set id for the product
         }
     }
 
