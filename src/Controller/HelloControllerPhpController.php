@@ -8,7 +8,10 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HelloControllerPhpController extends AbstractController
 {
-    #[Route('/hello/controller/php', name: 'app_hello_controller_php')]
+    #[Route('/hello', name: 'app_hello')]
+    // route: address of the page, name: name of the route
+    // we use name instead of address
+
     public function index(): JsonResponse
     {
         return $this->json([
