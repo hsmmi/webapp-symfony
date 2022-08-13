@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ProductRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert; // to use ones
 
 /* 
 ProductRepository
@@ -31,9 +32,12 @@ class Product
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Length(min: 3, max: 255)]
     private ?string $title = null;
 
     #[ORM\Column]
+    #[Assert\PositiveOrZero]
     private ?int $stock = null;
 
 /*     so imagine you have a product which should'n be empty

@@ -8,3 +8,9 @@
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
+
+
+# my files
+###> my files ###
+.DS_Store
+###< my files ###

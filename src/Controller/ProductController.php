@@ -15,7 +15,8 @@ class ProductController extends AbstractController
 {
 
     // we had param converter for id, ...
-    #[Route('/', name: 'app_product_new', method: ['Post'])] // using app to specify the namespace
+    // method POST
+    #[Route('/', name: 'app_product_new', methods: ['POST'])] // using app to specify the namespace
     // using type hinting for the parameter
     // dependency injection
     // save it with repository and get repository with type hinting
@@ -39,6 +40,7 @@ class ProductController extends AbstractController
 
         $repository->add($product, true);
 
+        // we should filter the data before return it
         return $this->json($product);
     }
 
