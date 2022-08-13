@@ -8,10 +8,3 @@
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
-
-
-#my ignore
-.env
-bin/
-config/
-
